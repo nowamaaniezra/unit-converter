@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    {%if not cunit %}
+
+        <form action="" method="post" target="_self">
+                <label for="temperature">Enter the temperature to convert:</label><br>
+                <input type="number" autocomplete="off" autofocus id="temperature" name="temperature"required><br><br>
+                <label for="funit">Unit to convert from:</label><br>
+                <select name="unit" required>
+                    <option selected value="">temperature units</option>
+                    {% for unit in temperature_units %}
+                    <option value="{{unit}}">{{unit}}</option>
+                    {%endfor%}
+                </select><br><br>
+                <label for="tunit">Unit to convert to:</label><br>
+                <select name="tunit" required>
+                    <option selected value="">temperature units</option>
+                    {% for tunit in temperature_units %}
+                    <option value="{{tunit}}">{{tunit}}</option>
+                    {%endfor%}
+                </select><br><br>
+                <button type="submit">Submit</button>
+            </form> 
+
+    {% endif %}
+
+    {% if cunit %}
+
+        <h3>Result of your calculation</h3>
+        <h2>{{orignal_value}} {{unit}}={{cunit}} {{tunit}}</h2>
+        <button onclick="history.back()">Reset</button>
+
+    {% endif %}
+
+{% endblock %}
